@@ -1,0 +1,19 @@
+{
+  "name": "reactyo",
+  "version": "0.0.0",
+  "authors": [
+    "Selena Carmouche <itscarmouche@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
