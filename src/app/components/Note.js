@@ -1,14 +1,12 @@
 import React from 'react/addons';
+import BaseComponent from './BaseComponent';
+
 
 /*
  * @class Note
  * @extends React.Component
  */
-class Note extends React.Component {
-
-  // getInitialState () {
-  //   return {editing: false}
-  // }
+class Note extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -16,11 +14,13 @@ class Note extends React.Component {
       editing: false
     };
 
-    this.edit = this.edit.bind(this);
-    this.save = this.save.bind(this);
-    this.remove = this.remove.bind(this);
-    this.renderDisplay = this.renderDisplay.bind(this);
-    this.renderForm = this.renderForm.bind(this);
+    this._bind(
+      'edit', 
+      'save', 
+      'remove', 
+      'renderDisplay', 
+      'renderForm'
+    );
 
   }
 

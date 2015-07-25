@@ -1,30 +1,29 @@
 import React from 'react/addons';
+import BaseComponent from './BaseComponent';
 import Note from './Note';
+
 
 /*
  * @class Note
  * @extends React.Component
  */
-class Board extends React.Component {
+class Board extends BaseComponent {
 
   constructor(props) {
     super(props);
     this.state = {
       notes: []
     }
-    this.update = this.update.bind(this);
-    this.add = this.add.bind(this);
-    this.remove = this.remove.bind(this);
-    this.nextId = this.nextId.bind(this);
-    this.eachNote = this.eachNote.bind(this);
+
+    this._bind(
+      'update', 
+      'add', 
+      'remove', 
+      'nextId', 
+      'eachNote'
+    );
 
   }
-
-  // getInitialState () {
-  //   return {
-  //       notes: []
-  //   };
-  // }
 
   nextId () {
       this.uniqueId = this.uniqueId || 0;
