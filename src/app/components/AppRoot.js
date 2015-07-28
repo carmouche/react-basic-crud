@@ -1,5 +1,7 @@
 import React from 'react/addons';
 import News from './News';
+import EditableContent from './EditableContent';
+import EditableNews from './EditableNews';
 
 import config from '../../../config/app';
 
@@ -30,7 +32,13 @@ class AppRoot extends React.Component {
   render () {
     return <div className="appRoot">
       <h1>{config.title}</h1>
-       <News />
+       <div className="col-md-6">
+        <EditableContent />
+       </div>
+       <div className="col-md-6">
+        <EditableNews />
+       </div>
+       
     </div>;
   }
 }
