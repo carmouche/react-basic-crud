@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import Board from './Board';
+import News from './News';
 
 import config from '../../../config/app';
 
@@ -30,7 +30,7 @@ class AppRoot extends React.Component {
   render () {
     return <div className="appRoot">
       <h1>{config.title}</h1>
-      <Board count={50} />
+       <News />
     </div>;
   }
 }
