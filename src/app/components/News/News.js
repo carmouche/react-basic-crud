@@ -1,8 +1,8 @@
 import React from 'react/addons';
-import EditableContent from './EditableContent';
-import EditableNewsItem from './EditableNewsItem';
+import EditableContent from './../EditableContent';
+import NewsItem from './NewsItem';
 
-class EditableNews extends EditableContent {
+class News extends EditableContent {
 
 	constructor(props) {
 		super(props);
@@ -10,7 +10,7 @@ class EditableNews extends EditableContent {
 
 	eachItem (item, i) {
 		return (
-			<EditableNewsItem 
+			<NewsItem 
 				key={item.id}
 				index={i} 
 				content={item.content} 
@@ -38,12 +38,12 @@ class EditableNews extends EditableContent {
 
 }
 
-EditableNews.defaultProps = {
+News.defaultProps = {
 	text: 'New content'
 }
 
 // PropTypes Validation
-EditableNews.propTypes = {};
+News.propTypes = {};
 
 
-export default EditableNews;
+export default News;

@@ -1,7 +1,7 @@
 import React from 'react/addons';
-import EditableContentItem from './EditableContentItem';
+import EditableContentItem from './../EditableContentItem';
 
-class EditableNewsItem extends EditableContentItem {
+class NewsItem extends EditableContentItem {
 
 	constructor(props) {
 		super(props);
@@ -32,14 +32,14 @@ class EditableNewsItem extends EditableContentItem {
 }
 
 
-EditableNewsItem.defaultProps = {
+NewsItem.defaultProps = {
 
 }
 
 // PropTypes Validation
-EditableNewsItem.propTypes = {
+NewsItem.propTypes = {
 	
 };
 
 
-export default EditableNewsItem;
+export default NewsItem;

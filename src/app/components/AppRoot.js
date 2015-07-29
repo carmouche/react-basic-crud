@@ -1,9 +1,11 @@
-import React from 'react/addons';
-import News from './News';
-import EditableContent from './EditableContent';
-import EditableNews from './EditableNews';
-
 import config from '../../../config/app';
+
+
+import React from 'react/addons';
+import EditableContent from './EditableContent';
+import News from './News/News';
+import Blog from './Blog/Blog';
+
 
 /*
  * @class AppRoot
@@ -36,8 +38,13 @@ class AppRoot extends React.Component {
         <EditableContent />
        </div>
        <div className="col-md-6">
-        <EditableNews />
+        <News />
        </div>
+       <div className="col-md-12">
+        <Blog />
+       </div>
+
+
        
     </div>;
   }
