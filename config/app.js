@@ -1,5 +1,5 @@
 var config = {};
 
-config.title = 'My Portfolio Site using React';
+config.title = 'React component basic crud';
 
 module.exports = config;
