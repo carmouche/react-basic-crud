@@ -9,14 +9,16 @@ class Article extends EditableContentItem {
 	}
 
 	save (fields) {
-		var index = this.props.index;
+		var idx = this.props.index; // index of current Article
+
+		/* fields.map goes through through array of field string IDs that 
+		correspond to EditableInput refs and updates them */
 		fields.map( (field) => {
 			var refName = field,
 					ref = this.refs[field]; 
-
 			
 			var refVal = React.findDOMNode(ref).value;
-			this.props.onChange(refName, refVal, index);
+			this.props.onChange(refName, refVal, idx);
 
 		});
         
@@ -26,11 +28,21 @@ class Article extends EditableContentItem {
 	renderEdit () {
 		return (
       <div>
-      	<EditableInput ref="title" savemethod={this.save} content={this.props.content.title} />
-      	<EditableInput ref="content" savemethod={this.save} content={this.props.content.content} />
-      	<EditableInput ref="tags" savemethod={this.save} content={this.props.content.tags} />
+      	<EditableInput 
+      		ref="title" 
+      		content={this.props.content.title} 
+      	/>
+      	<EditableInput 
+      		ref="content"
+      		content={this.props.content.content} 
+      		type="textarea"
+      	/>
+      	<EditableInput 
+      		ref="tags" 
+      		content={this.props.content.tags} 
+      	/>
       	
-      	<button onClick={this.save.bind(null, ['title', 'content', 'tags'])} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
+      	<button onClick={this.save.bind(null, ['title', 'content', 'tags'])} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk">&nbsp;Save</button>
       </div>
     );
     
@@ -39,12 +51,9 @@ class Article extends EditableContentItem {
 	renderView () {
 		return (
 			<div className="panel">
-	        <h3>
-	        {this.props.content.title}
-	        </h3>
-
+	        <h3>{this.props.content.title}</h3>
 	        <p>{this.props.content.content}</p>
-	        <p>{this.props.content.content}</p>
+	        <p>{this.props.content.tags}</p>
 
 	        <button onClick={this.edit}
 	            className="btn btn-default glyphicon glyphicon-pencil"/>

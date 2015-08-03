@@ -8,6 +8,16 @@ class Blog extends EditableContent {
 		super(props);
 	}
 
+	/* 
+
+		Parameter names that reference the passed value 
+		should be equal to desired property names otherwise 
+		the value must be explicitly defined as 
+
+		propertyname: parameter 
+
+	*/
+
 	add (title, content, tags) {
 		var arr = this.state.items;
 		arr.push({
@@ -27,7 +37,6 @@ class Blog extends EditableContent {
 		    this.setState({items:arr});
 	}
 
-
 	eachItem (item, i) {
 		return (
 			<Article 
@@ -45,9 +54,15 @@ class Blog extends EditableContent {
 		return (
 			<div>
 			<button type="button" 
-								className="btn btn-success glyphicon glyphicon-plus"
-								onClick={this.add.bind(null, "New Title", "New Content", "New Tags")}>
-								Add Blog Post
+							className="btn btn-success glyphicon glyphicon-plus"
+							onClick={this.add.bind(null, 
+								// sets the default text content when a new Article is added
+								"New Title", 
+								"New Content", 
+								"New Tags"
+							)}>
+
+					<span>Add Blog Post</span>
 			</button>
 
 			{this.state.items.map(this.eachItem)}
@@ -58,11 +73,7 @@ class Blog extends EditableContent {
 }
 
 Blog.defaultProps = {
-	// content: {
-	// 	title: 'Sample Title',
-	// 	content: 'Sample Content',
-	// 	tags: 'sample tag stuff'
-	// }
+
 }
 
 // PropTypes Validation

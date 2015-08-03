@@ -13,11 +13,10 @@ class EditableInput extends BaseComponent {
 
 	renderEdit () {
 		if (this.props.type === 'input') {
-			//return <input type="text" onBlur={this.props.savemethod} defaultValue={this.props.content} />
-			return <input type="text" defaultValue={this.props.content} />
+			return <input className="form-control" type="text" defaultValue={this.props.content} />
 		}
 		if (this.props.type === 'textarea') {
-      return <textarea defaultValue={this.props.content}></textarea>
+      return <textarea className="form-control" defaultValue={this.props.content}></textarea>
 		}    
   }
 

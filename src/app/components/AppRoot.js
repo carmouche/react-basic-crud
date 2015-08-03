@@ -2,8 +2,8 @@ import config from '../../../config/app';
 
 
 import React from 'react/addons';
-import EditableContent from './EditableContent';
-import News from './News/News';
+// import EditableContent from './EditableContent';
+// import News from './News/News';
 import Blog from './Blog/Blog';
 
 
@@ -34,13 +34,7 @@ class AppRoot extends React.Component {
   render () {
     return <div className="appRoot">
       <h1>{config.title}</h1>
-       <div className="col-md-6">
-        <EditableContent />
-       </div>
-       <div className="col-md-6">
-        <News />
-       </div>
-       <div className="col-md-12">
+       <div className="col-md-offset-2 col-md-8">
         <Blog />
        </div>
 
