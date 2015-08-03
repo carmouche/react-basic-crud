@@ -6,8 +6,11 @@ class EditableContent extends BaseComponent {
 
 	constructor(props) {
 		super(props);
+
+		this.items = new Array();
+
 		this.state = {
-			items: []
+			items: this.items
 		}
 
 		this._bind(
@@ -25,7 +28,7 @@ class EditableContent extends BaseComponent {
   }
 
 	add (content) {
-		var arr = this.state.items;
+		var arr = this.items;
 		arr.push({
 			id: this.nextId(),
 			content
@@ -34,13 +37,13 @@ class EditableContent extends BaseComponent {
 	}
 
 	update (newContent, i) {
-		var arr = this.state.items;
+		var arr = this.items;
 		    arr[i].content = newContent;
 		    this.setState({items:arr});
 	}
 
 	remove (i) {
-		var arr = this.state.items;
+		var arr = this.items;
 	      arr.splice(i, 1);
 	      this.setState({items: arr});
 	}
@@ -53,6 +56,7 @@ class EditableContent extends BaseComponent {
 				content={item.content} 
 				onChange={this.update}
         onRemove={this.remove}
+        type={this.props.type}
 			/>
 		);
 	}
@@ -63,10 +67,10 @@ class EditableContent extends BaseComponent {
 			<div>
 			<button type="button" 
 								className="btn btn-success glyphicon glyphicon-plus"
-								onClick={this.add.bind(null, this.props.text)}>
+								onClick={this.add.bind(null, this.props.content)}>
 								New Item
 			</button>
-			{this.state.items.map(this.eachItem)}
+			{this.items.map(this.eachItem)}
 				
 			</div>
 		);
@@ -75,7 +79,7 @@ class EditableContent extends BaseComponent {
 }
 
 EditableContent.defaultProps = {
-	text: 'New content'
+	content: 'New content'
 }
 
 // PropTypes Validation

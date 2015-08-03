@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import BaseComponent from './BaseComponent';
+import EditableInput from './EditableInput';
 
 class EditableContentItem extends BaseComponent {
 
@@ -22,7 +23,16 @@ class EditableContentItem extends BaseComponent {
 		this.setState({editing: true});
 	}
 
+	/* 
+		
+		getRefs (...refs) {
+			refs.forEach( (ref, i) => this.state.refStore[i] = ref);	
+		}
+
+	*/
+
 	save () {
+
 		var newContent = React.findDOMNode(this.refs.newContent).value;
     
     this.props.onChange(newContent, this.props.index);
@@ -32,15 +42,14 @@ class EditableContentItem extends BaseComponent {
   remove () {
     this.props.onRemove(this.props.index);
   }
-
-	renderEdit () {    
-    return (
+	
+	renderEdit () {
+		return (
       <div>
-      	<input ref="newContent" type="text" defaultValue={this.props.content} />
+      	<EditableInput ref="newContent" type={this.props.type} content={this.props.content} />
       	<button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
       </div>
     );
-
     
   }
 
