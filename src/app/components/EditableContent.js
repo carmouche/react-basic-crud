@@ -7,10 +7,8 @@ class EditableContent extends BaseComponent {
 	constructor(props) {
 		super(props);
 
-		this.items = new Array();
-
 		this.state = {
-			items: this.items
+			items: []
 		}
 
 		this._bind(
@@ -28,22 +26,22 @@ class EditableContent extends BaseComponent {
   }
 
 	add (content) {
-		var arr = this.items;
+		var arr = this.state.items;
 		arr.push({
 			id: this.nextId(),
-			content
+			content: content
 		});
 		this.setState({items: arr})
 	}
 
 	update (newContent, i) {
-		var arr = this.items;
+		var arr = this.state.items;
 		    arr[i].content = newContent;
 		    this.setState({items:arr});
 	}
 
 	remove (i) {
-		var arr = this.items;
+		var arr = this.state.items;
 	      arr.splice(i, 1);
 	      this.setState({items: arr});
 	}
@@ -63,14 +61,17 @@ class EditableContent extends BaseComponent {
 
 	// RENDER 
 	render () {
+
+
 		return (
+
 			<div>
 			<button type="button" 
 								className="btn btn-success glyphicon glyphicon-plus"
 								onClick={this.add.bind(null, this.props.content)}>
 								New Item
 			</button>
-			{this.items.map(this.eachItem)}
+			{this.state.items.map(this.eachItem)}
 				
 			</div>
 		);

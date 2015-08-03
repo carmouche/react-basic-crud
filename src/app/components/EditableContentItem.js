@@ -35,10 +35,6 @@ class EditableContentItem extends BaseComponent {
     this.props.onRemove(this.props.index);
   }
 
-  testa () {
-  	alert('ohya');
-  }
-	
 	renderEdit () {
 		return (
       <div>
