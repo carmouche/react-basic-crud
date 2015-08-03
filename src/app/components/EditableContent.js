@@ -13,7 +13,7 @@ class EditableContent extends BaseComponent {
 
 		this._bind(
 			'nextId', 
-			'update', 
+			'updateAll', 
 			'add', 
 			'remove', 
 			'eachItem'
@@ -25,18 +25,19 @@ class EditableContent extends BaseComponent {
       return this.uniqueId++;
   }
 
-	add (content) {
+	add (contentObj) {
 		var arr = this.state.items;
 		arr.push({
 			id: this.nextId(),
-			content: content
+			content: contentObj
 		});
 		this.setState({items: arr})
 	}
 
-	update (newContent, i) {
+	//update multipel items
+	updateAll (field, newContent, i) {
 		var arr = this.state.items;
-		    arr[i].content = newContent;
+		    arr[i].content[field] = newContent;
 		    this.setState({items:arr});
 	}
 
@@ -52,27 +53,22 @@ class EditableContent extends BaseComponent {
 				key={item.id}
 				index={i} 
 				content={item.content} 
-				onChange={this.update}
+				onChange={this.updateAll}
         onRemove={this.remove}
-        type={this.props.type}
 			/>
 		);
 	}
 
 	// RENDER 
 	render () {
-
-
 		return (
-
 			<div>
-			<button type="button" 
-								className="btn btn-success glyphicon glyphicon-plus"
-								onClick={this.add.bind(null, this.props.content)}>
-								New Item
-			</button>
-			{this.state.items.map(this.eachItem)}
-				
+				<button type="button" 
+									className="btn btn-success glyphicon glyphicon-plus"
+									onClick={this.add.bind(null, {content: "New Content"})}>
+									New Item
+				</button>
+				{this.state.items.map(this.eachItem)}
 			</div>
 		);
 	}
@@ -80,7 +76,6 @@ class EditableContent extends BaseComponent {
 }
 
 EditableContent.defaultProps = {
-	content: 'New content'
 }
 
 // PropTypes Validation

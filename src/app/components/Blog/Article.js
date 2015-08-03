@@ -8,23 +8,6 @@ class Article extends EditableContentItem {
 		super(props);
 	}
 
-	save (fields) {
-		var idx = this.props.index; // index of current Article
-
-		/* fields.map goes through through array of field string IDs that 
-		correspond to EditableInput refs and updates them */
-		fields.map( (field) => {
-			var refName = field,
-					ref = this.refs[field]; 
-			
-			var refVal = React.findDOMNode(ref).value;
-			this.props.onChange(refName, refVal, idx);
-
-		});
-        
-    this.setState({editing: false});
-  }
-
 	renderEdit () {
 		return (
       <div>
@@ -41,8 +24,16 @@ class Article extends EditableContentItem {
       		ref="tags" 
       		content={this.props.content.tags} 
       	/>
-      	
-      	<button onClick={this.save.bind(null, ['title', 'content', 'tags'])} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk">&nbsp;Save</button>
+      	<EditableInput 
+      		ref="image" 
+      		content={this.props.content.image} 
+      	/>
+     
+      	<button 
+      		onClick={this.save.bind(null, this.props.contentFields)} 
+      		className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk">
+      		<span>&nbsp;Save</span>
+      	</button>
       </div>
     );
     
@@ -54,6 +45,7 @@ class Article extends EditableContentItem {
 	        <h3>{this.props.content.title}</h3>
 	        <p>{this.props.content.content}</p>
 	        <p>{this.props.content.tags}</p>
+	        <img src={this.props.content.image} />
 
 	        <button onClick={this.edit}
 	            className="btn btn-default glyphicon glyphicon-pencil"/>
@@ -67,7 +59,7 @@ class Article extends EditableContentItem {
 
 
 Article.defaultProps = {
-
+	contentFields: ['title', 'content', 'tags', 'image']
 }
 
 // PropTypes Validation

@@ -23,11 +23,25 @@ class EditableContentItem extends BaseComponent {
 		this.setState({editing: true});
 	}
 
-	save () {
+	// save () {
+	// 	var newContent = React.findDOMNode(this.refs.newContent).value;
+	//    this.props.onChange(newContent, this.props.index);
+	//    this.setState({editing: false});
+	//  }
 
-		var newContent = React.findDOMNode(this.refs.newContent).value;
-    
-    this.props.onChange(newContent, this.props.index);
+	save (fields) {
+		var idx = this.props.index; // index of current Article
+
+		/* fields.map goes through through array of field string IDs that 
+		correspond to EditableInput refs and updates them */
+		fields.map( (field) => {
+			var refName = field,
+					ref = this.refs[field]; 
+			
+			var refVal = React.findDOMNode(ref).value;
+			this.props.onChange(refName, refVal, idx);
+		});
+        
     this.setState({editing: false});
   }
 

@@ -8,44 +8,15 @@ class Blog extends EditableContent {
 		super(props);
 	}
 
-	/* 
-
-		Parameter names that reference the passed value 
-		should be equal to desired property names otherwise 
-		the value must be explicitly defined as 
-
-		propertyname: parameter 
-
-	*/
-
-	add (title, content, tags) {
-		var arr = this.state.items;
-		arr.push({
-			id: this.nextId(),
-			content: {
-				title,
-				content,
-				tags
-			}
-		});
-		this.setState({items: arr})
-	}
-
-	update (field, newContent, i) {
-		var arr = this.state.items;
-		    arr[i].content[field] = newContent;
-		    this.setState({items:arr});
-	}
-
 	eachItem (item, i) {
 		return (
-			<Article 
-				key={item.id}
-				index={i} 
-				content={item.content} 
-				onChange={this.update}
-        onRemove={this.remove}
-			/>
+				<Article 
+					key={item.id}
+					index={i} 
+					content={item.content} 
+					onChange={this.updateAll}
+	        onRemove={this.remove}
+				/>
 		);
 	}
 
@@ -55,12 +26,12 @@ class Blog extends EditableContent {
 			<div>
 			<button type="button" 
 							className="btn btn-success glyphicon glyphicon-plus"
-							onClick={this.add.bind(null, 
-								// sets the default text content when a new Article is added
-								"New Title", 
-								"New Content", 
-								"New Tags"
-							)}>
+							onClick={this.add.bind(null, {
+									title: "New Title", 
+									content: "New Content", 
+									tags: "New Tags",
+									image: "http://lorempixel.com/400/200"
+							})}>
 
 					<span>Add Blog Post</span>
 			</button>
@@ -73,7 +44,6 @@ class Blog extends EditableContent {
 }
 
 Blog.defaultProps = {
-
 }
 
 // PropTypes Validation
