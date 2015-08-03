@@ -7,13 +7,18 @@ class EditableInput extends BaseComponent {
 		super(props);
 
 		this._bind(
-			'renderEdit'
+			'renderEdit',
+			'test'
 		);
+	}
+
+	test() {
+		alert('hey')
 	}
 
 	renderEdit () {
 		if (this.props.type === 'input') {
-			return <input type="text" defaultValue={this.props.content} />
+			return <input type="text" onBlur={this.props.savemethod} defaultValue={this.props.content} />
 		}
 		if (this.props.type === 'textarea') {
       return <textarea defaultValue={this.props.content}></textarea>

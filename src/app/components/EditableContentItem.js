@@ -23,14 +23,6 @@ class EditableContentItem extends BaseComponent {
 		this.setState({editing: true});
 	}
 
-	/* 
-		
-		getRefs (...refs) {
-			refs.forEach( (ref, i) => this.state.refStore[i] = ref);	
-		}
-
-	*/
-
 	save () {
 
 		var newContent = React.findDOMNode(this.refs.newContent).value;
@@ -42,11 +34,15 @@ class EditableContentItem extends BaseComponent {
   remove () {
     this.props.onRemove(this.props.index);
   }
+
+  testa () {
+  	alert('ohya');
+  }
 	
 	renderEdit () {
 		return (
       <div>
-      	<EditableInput ref="newContent" type={this.props.type} content={this.props.content} />
+      	<EditableInput ref="newContent" savemethod={this.save} type={this.props.type} content={this.props.content} />
       	<button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
       </div>
     );
