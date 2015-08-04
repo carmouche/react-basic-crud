@@ -15,7 +15,7 @@ class Blog extends EditableContent {
 					index={i} 
 					content={item.content} 
 					onChange={this.updateAll}
-	        onRemove={this.remove}
+	        		onRemove={this.remove}
 				/>
 		);
 	}
@@ -24,27 +24,28 @@ class Blog extends EditableContent {
 	render () {
 		return (
 			<div>
-			<button type="button" 
-							className="btn btn-success glyphicon glyphicon-plus"
-							onClick={this.add.bind(null, {
-									title: "New Title", 
-									content: "New Content", 
-									tags: "New Tags",
-									image: "http://lorempixel.com/400/200"
-							})}>
+				<button 
+					type="button" 
+					className="btn btn-success glyphicon glyphicon-plus"
+					onClick={this.add.bind(
+						null, {
+							title: "New Title", 
+							content: "New Content", 
+							tags: "New Tags",
+							image: "http://lorempixel.com/400/200"
+						}
+					)}>
 
-					<span>Add Blog Post</span>
+				<span>Add Blog Post</span>
 			</button>
 
-			{this.state.items.map(this.eachItem)}
-				
+			{this.state.items.map(this.eachItem)}		
 			</div>
 		);
 	}
 }
 
-Blog.defaultProps = {
-}
+Blog.defaultProps = {};
 
 // PropTypes Validation
 Blog.propTypes = {};

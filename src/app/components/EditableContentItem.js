@@ -23,11 +23,12 @@ class EditableContentItem extends BaseComponent {
 		this.setState({editing: true});
 	}
 
-	// save () {
-	// 	var newContent = React.findDOMNode(this.refs.newContent).value;
-	//    this.props.onChange(newContent, this.props.index);
-	//    this.setState({editing: false});
-	//  }
+	save () {
+		var newContent = React.findDOMNode(this.refs.newContent).value;
+		
+		this.props.onChange(newContent, this.props.index);
+		this.setState({editing: false});
+	}
 
 	save (fields) {
 		var idx = this.props.index; // index of current Article
@@ -42,57 +43,61 @@ class EditableContentItem extends BaseComponent {
 			this.props.onChange(refName, refVal, idx);
 		});
         
-    this.setState({editing: false});
-  }
+		this.setState({editing: false});
+	}
 
-  remove () {
-    this.props.onRemove(this.props.index);
-  }
+	remove () {
+		this.props.onRemove(this.props.index);
+	}
 
 	renderEdit () {
 		return (
-      <div>
-      	<EditableInput ref="newContent" savemethod={this.save} type={this.props.type} content={this.props.content} />
-      	<button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
-      </div>
-    );
-    
-  }
+			<div>
+				<EditableInput 
+					ref="newContent" 
+					savemethod={this.save} 
+					type={this.props.type} 
+					content={this.props.content} />
+				<button 
+					onClick={this.save} 
+					className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
+			</div>
+	    );
+
+	}
 
 	renderView () {
 		return (
 			<div className="panel">
-	        <h3>
-	        {this.props.content}
-	        <button onClick={this.edit}
-	            className="btn btn-default glyphicon glyphicon-pencil"/>
-	        <button onClick={this.remove}
-	            className="btn btn-danger glyphicon glyphicon-trash"/>
-	        </h3>
-	    </div>
+		        <h3>
+		        {this.props.content}
+				<button 
+					onClick={this.edit}
+				    className="btn btn-default glyphicon glyphicon-pencil"/>
+				<button 
+					onClick={this.remove}
+				    className="btn btn-danger glyphicon glyphicon-trash"/>
+		        </h3>
+		    </div>
 		);
 	}
 
 	// RENDER 
 	render () {
 		if (this.state.editing) {
-        return this.renderEdit();
-    }
-    else {
-        return this.renderView();
-    }
+	        return this.renderEdit();
+	    }
+	    else {
+	        return this.renderView();
+	    }
 	}
 }
 
 
-EditableContentItem.defaultProps = {
-
-}
+EditableContentItem.defaultProps = {};
 
 // PropTypes Validation
-EditableContentItem.propTypes = {
-	
-};
+EditableContentItem.propTypes = {};
 
 
 export default EditableContentItem;
