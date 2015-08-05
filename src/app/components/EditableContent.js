@@ -36,14 +36,25 @@ class EditableContent extends BaseComponent {
 		return this.uniqueId++;
 	}
 
+	// // Re-base way
+	// add (contentObj) {
+	// 	var id = this.nextId();
+	// 	base.post('items/' + id, {
+	// 		data: {
+	// 			id: id,
+	// 			content: contentObj
+	// 		}
+	// 	})
+	// }
+
 	add (contentObj) {
-		var id = this.nextId();
-		base.post('items/' + id, {
-			data: {
-				id: id,
-				content: contentObj
-			}
-		})
+		var arr = this.state.items;
+		
+		arr.push({
+			id: this.nextId(),
+			content: contentObj
+		});
+		this.setState({items: arr})
 	}
 
 	//update multipel items
