@@ -1,6 +1,9 @@
 import React from 'react/addons';
 import BaseComponent from './BaseComponent';
 import EditableContentItem from './EditableContentItem';
+import Rebase from 're-base';
+
+var base = Rebase.createClass('https://vivid-heat-2847.firebaseio.com/');
 
 class EditableContent extends BaseComponent {
 
@@ -20,19 +23,27 @@ class EditableContent extends BaseComponent {
 		);
 	}
 
+	componentDidMount () {
+		base.syncState('items', {
+	      context: this,
+	      asArray: true,
+	      state: 'items'
+	   });
+	}
+
 	nextId () {
 		this.uniqueId = this.uniqueId || 0;
 		return this.uniqueId++;
 	}
 
 	add (contentObj) {
-		var arr = this.state.items;
-		
-		arr.push({
-			id: this.nextId(),
-			content: contentObj
-		});
-		this.setState({items: arr})
+		var id = this.nextId();
+		base.post('items/' + id, {
+			data: {
+				id: id,
+				content: contentObj
+			}
+		})
 	}
 
 	//update multipel items
