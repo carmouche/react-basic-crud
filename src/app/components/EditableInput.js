@@ -43,7 +43,9 @@ EditableInput.defaultProps = {
 };
 
 // PropTypes Validation
-EditableInput.propTypes = {};
+EditableInput.propTypes = {
+	type: React.PropTypes.string
+};
 
 
 export default EditableInput;

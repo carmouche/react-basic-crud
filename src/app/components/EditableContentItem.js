@@ -23,13 +23,6 @@ class EditableContentItem extends BaseComponent {
 		this.setState({editing: true});
 	}
 
-	save () {
-		var newContent = React.findDOMNode(this.refs.newContent).value;
-		
-		this.props.onChange(newContent, this.props.index);
-		this.setState({editing: false});
-	}
-
 	save (fields) {
 		var idx = this.props.index; // index of current Article
 
@@ -55,12 +48,12 @@ class EditableContentItem extends BaseComponent {
 			<div>
 				<EditableInput 
 					ref="newContent" 
-					savemethod={this.save} 
-					type={this.props.type} 
-					content={this.props.content} />
+					content={this.props.content.newContent} />
 				<button 
-					onClick={this.save} 
-					className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
+            	onClick={this.save.bind(null, this.props.contentFields)} 
+            	className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk">
+            	<span>&nbsp;Save</span>
+            </button>
 			</div>
 	    );
 
@@ -94,10 +87,16 @@ class EditableContentItem extends BaseComponent {
 }
 
 
-EditableContentItem.defaultProps = {};
+EditableContentItem.defaultProps = {
+	contentFields: ['newContent']
+};
 
 // PropTypes Validation
-EditableContentItem.propTypes = {};
+EditableContentItem.propTypes = {
+	/* array of editable content 'refs' to be passed to the save() function
+		corresponds to editable input fields of the article */
+	contentFields: React.PropTypes.array.isRequired
+};
 
 
 export default EditableContentItem;

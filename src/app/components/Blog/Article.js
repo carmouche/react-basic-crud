@@ -90,7 +90,9 @@ Article.defaultProps = {
 };
 
 // PropTypes Validation
-Article.propTypes = {};
+Article.propTypes = {
+	
+};
 
 
 export default Article;
