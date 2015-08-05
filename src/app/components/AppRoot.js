@@ -2,6 +2,7 @@ import config from '../../../config/app';
 
 import React from 'react/addons';
 import Blog from './Blog/Blog';
+import Work from './Work/Work';
 
 
 class AppRoot extends React.Component {
@@ -21,8 +22,11 @@ class AppRoot extends React.Component {
         return (
           <div className="appRoot">
             <h1>{config.title}</h1>
-            <div className="col-md-offset-2 col-md-8">
+            <div className="col-md-8">
             <Blog />
+            </div>
+            <div className="col-md-4">
+            <Work />
             </div>
           </div >
         );
