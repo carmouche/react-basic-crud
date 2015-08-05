@@ -15,7 +15,7 @@ class EditableContent extends BaseComponent {
 		}
 
 		this._bind(
-			'nextId', 
+			//'nextId', 
 			'updateAll', 
 			'add', 
 			'remove', 
@@ -31,10 +31,10 @@ class EditableContent extends BaseComponent {
 	   });
 	}
 
-	nextId () {
-		this.uniqueId = this.uniqueId || 0;
-		return this.uniqueId++;
-	}
+	// nextId () {
+	// 	this.uniqueId = this.uniqueId || 0;
+	// 	return this.uniqueId++;
+	// }
 
 	// // Re-base way
 	// add (contentObj) {
@@ -51,7 +51,7 @@ class EditableContent extends BaseComponent {
 		var arr = this.state.items;
 		
 		arr.push({
-			id: this.nextId(),
+			//id: this.nextId(),
 			content: contentObj
 		});
 		this.setState({items: arr})
@@ -75,7 +75,7 @@ class EditableContent extends BaseComponent {
 	eachItem (item, i) {
 		return (
 			<EditableContentItem 
-				key={item.id}
+				key={item.key}
 				index={i} 
 				content={item.content} 
 				onChange={this.updateAll}

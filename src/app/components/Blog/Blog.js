@@ -11,7 +11,7 @@ class Blog extends EditableContent {
 	eachItem (item, i) {
 		return (
 				<Article 
-					key={item.id}
+					key={item.key}
 					index={i} 
 					content={item.content} 
 					onChange={this.updateAll}
