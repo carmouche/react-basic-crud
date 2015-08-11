@@ -11,39 +11,43 @@ class EditableContentItem extends BaseComponent {
 		}
 
 		this._bind(
-			'edit', 
-			'save', 
-			'remove', 
+			'edit',
+			'save',
+			'remove',
 			'renderView',
 			'renderEdit'
 		);
 	}
 
-	edit () {
-		this.setState({editing: true});
+	edit() {
+		this.setState({
+			editing: true
+		});
 	}
 
-	save (fields) {
+	save(fields) {
 		var idx = this.props.index; // index of current Article
 
 		/* fields.map goes through through array of field string IDs that 
 		correspond to EditableInput refs and updates them */
-		fields.map( (field) => {
+		fields.map((field) => {
 			var refName = field,
-					ref = this.refs[field]; 
-			
+				ref = this.refs[field];
+
 			var refVal = React.findDOMNode(ref).value;
 			this.props.onChange(refName, refVal, idx);
 		});
-        
-		this.setState({editing: false});
+
+		this.setState({
+			editing: false
+		});
 	}
 
-	remove () {
+	remove() {
 		this.props.onRemove(this.props.index);
 	}
 
-	renderEdit () {
+	renderEdit() {
 		return (
 			<div>
 				<EditableInput 
@@ -55,11 +59,11 @@ class EditableContentItem extends BaseComponent {
             	<span>&nbsp;Save</span>
             </button>
 			</div>
-	    );
+		);
 
 	}
 
-	renderView () {
+	renderView() {
 		return (
 			<div className="panel">
 		        <h3>
@@ -76,13 +80,12 @@ class EditableContentItem extends BaseComponent {
 	}
 
 	// RENDER 
-	render () {
+	render() {
 		if (this.state.editing) {
-	        return this.renderEdit();
-	    }
-	    else {
-	        return this.renderView();
-	    }
+			return this.renderEdit();
+		} else {
+			return this.renderView();
+		}
 	}
 }
 
@@ -99,4 +102,5 @@ EditableContentItem.propTypes = {
 };
 
 
-export default EditableContentItem;
+export
+default EditableContentItem;

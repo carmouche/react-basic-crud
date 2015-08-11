@@ -15,64 +15,53 @@ class EditableContent extends BaseComponent {
 		}
 
 		this._bind(
-			//'nextId', 
-			'updateAll', 
-			'add', 
-			'remove', 
+			'updateAll',
+			'add',
+			'remove',
 			'eachItem'
 		);
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		base.syncState('items', {
-	      context: this,
-	      asArray: true,
-	      state: 'items'
-	   });
+			context: this,
+			asArray: true,
+			state: 'items'
+		});
 	}
 
-	// nextId () {
-	// 	this.uniqueId = this.uniqueId || 0;
-	// 	return this.uniqueId++;
-	// }
-
-	// // Re-base way
-	// add (contentObj) {
-	// 	var id = this.nextId();
-	// 	base.post('items/' + id, {
-	// 		data: {
-	// 			id: id,
-	// 			content: contentObj
-	// 		}
-	// 	})
-	// }
-
-	add (contentObj) {
+	add(contentObj) {
 		var arr = this.state.items;
-		
+
 		arr.push({
 			//id: this.nextId(),
 			content: contentObj
 		});
-		this.setState({items: arr})
+		this.setState({
+			items: arr
+		})
 	}
 
 	//update multipel items
-	updateAll (field, newContent, i) {
+	updateAll(field, newContent, i) {
 		var arr = this.state.items;
-	    
-	    arr[i].content[field] = newContent;
-	    this.setState({items:arr});
+
+		arr[i].content[field] = newContent;
+		this.setState({
+			items: arr
+		});
 	}
 
-	remove (i) {
+	remove(i) {
 		var arr = this.state.items;
-		
+
 		arr.splice(i, 1);
-		this.setState({items: arr});
+		this.setState({
+			items: arr
+		});
 	}
 
-	eachItem (item, i) {
+	eachItem(item, i) {
 		return (
 			<EditableContentItem 
 				key={item.key}
@@ -85,7 +74,7 @@ class EditableContent extends BaseComponent {
 	}
 
 	// RENDER 
-	render () {
+	render() {
 		return (
 			<div>
 				<button 
@@ -107,4 +96,5 @@ EditableContent.defaultProps = {};
 EditableContent.propTypes = {};
 
 
-export default EditableContent;
+export
+default EditableContent;
